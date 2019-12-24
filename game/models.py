@@ -1,4 +1,5 @@
 from django.db import models
+import random
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
@@ -11,6 +12,7 @@ class Word(models.Model):
     word_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date created', auto_now_add=True)
     times_correct = models.IntegerField(default=0)
+    times_appeared = models.IntegerField(default=0)
     def addWord(text):
         word = Word(word_text=text)
         return word

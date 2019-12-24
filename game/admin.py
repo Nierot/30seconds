@@ -3,7 +3,7 @@ from django.contrib import admin
 from .models import Word, Category
 
 class WordAdmin(admin.ModelAdmin):
-    fields = ['category', 'word_text', 'pub_date', 'times_correct']
+    fields = ['category', 'word_text']
 
 class CategoryAdmin(admin.ModelAdmin):
     fields = ['name']
