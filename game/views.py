@@ -18,10 +18,12 @@ def index(request):
             word = wordList[i]
             if word not in returnList:
                 returnList.append(word)
+                returnList.append(word.times_appeared)
                 word.times_appeared += 1
                 word.save()
                 print(word)
                 i += 1
+                print(returnList)
     return render(request, 'game/words.html', {'returnList': returnList}) 
     """
     max = Word.objects.all().order_by("-id")[0].id - 1
