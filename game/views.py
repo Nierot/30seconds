@@ -2,7 +2,7 @@ from django.shortcuts import render
 import random
 from django.http import HttpResponse, Http404
 
-from .models import Word, Maker
+from .models import Word, Category
 
 
 def index(request):
