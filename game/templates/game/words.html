@@ -1,0 +1,13 @@
+{% load get_version_template %}
+
+{% get_version as version %}
+
+<html>
+<h1> {{ version|default:"420.69" }} </h1>
+
+<body>
+    {% for foo in returnList %}
+        <li>{{foo}}</li>
+    {% endfor %}
+</body>
+</html

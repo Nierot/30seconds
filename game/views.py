@@ -1,21 +1,24 @@
 from django.shortcuts import render
-import random
 from django.http import HttpResponse, Http404
+from django.shortcuts import render
+from game.utils import createWordList
+from game.version import getVersion
 
-from .models import Word, Maker
+from .models import Word, Category
 
 
-def index(request):
-    max = Word.objects.all().order_by("-id")[0].id - 1
-    allWordsList = Word.objects.order_by('pub_date')
-    wordList = []
-    usedWords = []
-    i = 0
-    while i < 5:
-        id = random.randint(0, max)
-        if id not in usedWords:
-            usedWords.append(id)
-            wordList.append(allWordsList[id])
-            i += 1
-    output = ', '.join([foo.word_text for foo in wordList])
-    return HttpResponse(output)
+def words(request):
+    returnList = createWordList()
+    return render(request, 'game/words.html', {'returnList': returnList})
+
+def versionNumber(request):
+    version = getVersion()
+    print(version)
+    return render(request, 'game/words.html', {'version': version})
+
+
+def gameView(request):
+    returnList = createWordList()
+    version = versionNumber()
+    context = {'returnList' : returnList, 'version' : version}
+    return render(request, 'game/words.html', context)
