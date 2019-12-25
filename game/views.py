@@ -6,7 +6,7 @@ from game.version import getVersion
 
 from .models import Word, Category
 
-
+"""
 def words(request):
     returnList = createWordList()
     return render(request, 'game/words.html', {'returnList': returnList})
@@ -15,10 +15,10 @@ def versionNumber(request):
     version = getVersion()
     print(version)
     return render(request, 'game/words.html', {'version': version})
-
+"""
 
 def gameView(request):
     returnList = createWordList()
-    version = versionNumber()
+    version = getVersion()
     context = {'returnList' : returnList, 'version' : version}
     return render(request, 'game/words.html', context)
