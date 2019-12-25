@@ -3,11 +3,15 @@
 {% get_version as version %}
 
 <html>
-<h1> {{ version|default:"420.69" }} </h1>
+<h1>
+<span style="float:left;"> Words: </span> 
+<span style="float:right;"> {{ version|default:"420.69" }} </span>
+<br></br>
 
 <body>
     {% for foo in returnList %}
         <li>{{foo}}</li>
     {% endfor %}
 </body>
+</h1>
 </html
