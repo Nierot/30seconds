@@ -1,10 +1,11 @@
 from .models import Word
 import random
 
-"""
-Returns the least/most amount of times a word has appeared
-"""
+
 def xAppeared(operator):
+    """
+    Returns the least/most amount of times a word has appeared
+    """
     foo = Word.objects.all()
     least = 1000
     most = 0
@@ -19,16 +20,18 @@ def xAppeared(operator):
                 most = i.times_appeared
         return most
 
-"""
-returns a random boolean
-"""
+
 def randomBoolean():
+    """
+    returns a random boolean
+    """
     return random.randint(0,99) < 50
 
-"""
-Returns a semi-random integer. Is based on how many times a word has appeared before
-"""
+
 def randomInt():
+    """
+    Returns a semi-random integer. Is based on how many times a word has appeared before
+    """
     wordList = Word.objects.all()
     max = Word.objects.all().order_by("-id")[0].id - 1
     half = round((xAppeared(">") - xAppeared("<")) / 2)
@@ -40,10 +43,11 @@ def randomInt():
         elif word.times_appeared < half:
             return randID
 
-"""
-Fetches all words, then returns 5 random ones to the view
-"""
+
 def createWordList():
+    """
+    Fetches all words, then returns 5 random ones to the view
+    """
     wordList = Word.objects.all()
     returnList = []
     ids = []
