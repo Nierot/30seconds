@@ -1,5 +1,9 @@
+{% load get_version_template %}
+
+{% get_version as version %}
+
 <html>
-<h1> Words <h1>
+<h1> {{ version|default:"420.69" }} </h1>
 
 <body>
     {% for foo in returnList %}

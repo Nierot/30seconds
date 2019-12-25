@@ -1,6 +1,9 @@
 from .models import Word
 import random
 
+"""
+Returns the least/most amount of times a word has appeared
+"""
 def xAppeared(operator):
     foo = Word.objects.all()
     least = 1000
@@ -16,10 +19,15 @@ def xAppeared(operator):
                 most = i.times_appeared
         return most
 
+"""
+returns a random boolean
+"""
 def randomBoolean():
     return random.randint(0,99) < 50
 
-
+"""
+Returns a semi-random integer. Is based on how many times a word has appeared before
+"""
 def randomInt():
     wordList = Word.objects.all()
     max = Word.objects.all().order_by("-id")[0].id - 1
@@ -32,7 +40,31 @@ def randomInt():
         elif word.times_appeared < half:
             return randID
 
+"""
+Fetches all words, then returns 5 random ones to the view
+"""
+def createWordList():
+    wordList = Word.objects.all()
+    returnList = []
+    ids = []
+    while len(ids) < 5:
+        foo = randomInt()
+        if len(ids) < 5:
+            randInt = randomInt()
+            if randInt not in ids:
+                ids.append(randInt)
+    i = 0
+    while i < 5:
+        for j in ids:
+            word = wordList[j]
+            if word not in returnList:
+                returnList.append(word)
+                word.times_appeared += 1
+                word.save()
+                i += 1
+    return returnList
 
+#Not in use anymore, still has problems with being stuck in a loop
 def kindaRandomInt():
     max = Word.objects.all().order_by("-id")[0].id - 1
     returnList = []
