@@ -1,0 +1,17 @@
+#index {
+    text-align: center;
+}
+
+#version {
+    color:red;
+    text-align: right;
+}
+
+#startGameButton {
+    text-align: center;
+}
+
+#addWordsButton {
+    text-align: center;
+    padding-top: 1%;
+}
