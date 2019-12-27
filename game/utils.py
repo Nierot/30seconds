@@ -39,10 +39,11 @@ def randomInt():
     Returns a semi-random integer. Is based on how many times a word has appeared before
     """
     wordList = Word.objects.all()
-    max = Word.objects.all().order_by("-id")[0].id - 1
+    maximum = Word.objects.all().count() - 1
+    print(maximum)
     half = round((xAppeared(">") - xAppeared("<")) / 2)
     while True:
-        randID = random.randint(0,max)
+        randID = random.randint(0,maximum)
         word = wordList[randID]
         if randomBoolean():
             return randID

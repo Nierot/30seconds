@@ -27,7 +27,7 @@ def addWordsView(request):
         form = WordForm(request.POST)
         if form.is_valid():
             Word.addWord(form.cleaned_data['word_text'], getBasicCategory())
-            return HttpResponseRedirect('/game/')
+            return HttpResponseRedirect('/addWords/')
     else:
         form = WordForm()
     return render(request, 'game/addWords.html', {'form': form})
