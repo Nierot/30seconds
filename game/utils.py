@@ -1,5 +1,11 @@
-from .models import Word
+from .models import Word, Category
 import random
+
+def getBasicCategory():
+    """
+    Returns the 'basic' category object
+    """
+    return Category.objects.all().get(id=2)
 
 
 def xAppeared(operator):
