@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from seconds.index import indexView
+from game.views import addWordsView
 
 urlpatterns = [
     path('game/', include('game.urls')),
     path('admin/', admin.site.urls),
-    #path('', views.gameView, name='gameView'),
     path('', indexView, name='indexView'),
+    path('addWords/', addWordsView, name='addWords'),
 ]
