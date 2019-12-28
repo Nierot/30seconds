@@ -1,14 +1,18 @@
 <!doctype html>
 <html lang="en">
     {% load static %}
-    <link rel='stylesheet' href='/game/static/game/style.css'>
 
+    <style>
+        #index {text-align: center;}   
+        #version {color:red;text-align: right;}
+        #startGameButton {text-align: center;}
+        #addWordsButton {text-align: center; padding-top: 1%;}
+    </style>
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="{% static 'game/style.css' %}">
         <title> 30 seconds! </title>
     <head>
 
@@ -16,10 +20,10 @@
         <div class='row'>
             <div class="col-sm-5"></div>
             <div class="col-sm-2">
-                <div id='index' class="display-4"> <div class='text-primary'> 30 seconds! </div></div>
+                <div id='index' text-align:'center' class="display-4"> <div class='text-primary'> 30 seconds! </div></div>
             </div>
             <div class="col-sm-5">
-                <div id='version'> {{ version|default:"420.69" }} </div>
+                <div id='version' color:'red' text-align:'right'> {{ version|default:"420.69" }} </div>
             </div>
         </div>
         <br></br>
