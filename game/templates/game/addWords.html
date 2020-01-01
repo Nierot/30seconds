@@ -12,14 +12,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <br></br>
-    <div class='row'>
-        <div class='col-sm-3'></div>
-        <form action="" method="post" class='col-sm-8'>
-            <div class="form-inline">
-                {% csrf_token %}
-                {{ form }}
-                <input type="submit" value="Submit" class="btn btn-primary">
+    <form action="" method="post">
+            {{ form.non_field_errors }}
+            {% csrf_token %}
+            <div class='container'>
+                <div class='row'>
+                    <div class='col-sm-4'>
+                        <div class="fieldWrapper">
+                            Word: <br>
+                            {{ form.word_text }}
+                        </div>
+                    </div>
+                    <div class='col-sm-4'>
+                        <div class="form-group">
+                            Category: <br>
+                            {{ form.selected_category }}
+                        </div>
+                    </div>
+                    <div class='col-sm-4' id="buttons">
+                        <input type="submit" value="Submit" class="btn btn-primary">
+                    </div>
+                </div>
             </div>
         </form>
-    </div>
 </html>
