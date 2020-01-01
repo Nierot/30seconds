@@ -9,13 +9,16 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="{% static 'game/style.css' %}">
         <title> Add words </title>
-    <head>
-
-    <form action="" method="post">
-        <div class="form-inline">
-            {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="Submit" class="btn btn-primary">
-        </div>
-    </form>
+    </head>
+    <br></br>
+    <div class='row'>
+        <div class='col-sm-3'></div>
+        <form action="" method="post" class='col-sm-8'>
+            <div class="form-inline">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
 </html>

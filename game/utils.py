@@ -1,12 +1,5 @@
-from .models import Word, Category
+from game.models import Word, Category
 import random
-
-def getBasicCategory():
-    """
-    Returns the 'basic' category object
-    """
-    return Category.objects.all().get(id=2)
-
 
 def xAppeared(operator):
     """
@@ -26,21 +19,35 @@ def xAppeared(operator):
                 most = i.times_appeared
         return most
 
-
 def randomBoolean():
     """
     returns a random boolean
     """
     return random.randint(0,99) < 50
 
+def catsStringToArray(catsString):
+    """
+    converts "[1,2,3]" to [1,2,3]
+    """
+    return list(map(int, catsString.strip('[]').split(',')))
 
-def randomInt():
+def specificWordList(catsString):
+    """
+    creates the full wordlist from selected categories
+    """
+    cats = catsStringToArray(catsString)
+    wordList = []
+    for i in cats:
+        for word in Word.objects.all().filter(category=i):
+            wordList.append(word)
+    return wordList
+
+def randomInt(catsString):
     """
     Returns a semi-random integer. Is based on how many times a word has appeared before
     """
-    wordList = Word.objects.all()
-    maximum = Word.objects.all().count() - 1
-    print(maximum)
+    wordList = specificWordList(catsString)
+    maximum = len(wordList) - 1
     half = round((xAppeared(">") - xAppeared("<")) / 2)
     while True:
         randID = random.randint(0,maximum)
@@ -50,6 +57,30 @@ def randomInt():
         elif word.times_appeared < half:
             return randID
 
+
+def createSpecificWordList(catsString):
+    """
+    Fetches all words, then returns 5 random ones to the view
+    """
+    wordList = specificWordList(catsString)
+    returnList = []
+    ids = []
+    while len(ids) < 5:
+        foo = randomInt(catsString)
+        if len(ids) < 5:
+            randInt = randomInt(catsString)
+            if randInt not in ids:
+                ids.append(randInt)
+    i = 0
+    while i < 5:
+        for j in ids:
+            word = wordList[j]
+            if word not in returnList:
+                returnList.append(word)
+                word.times_appeared += 1
+                word.save()
+                i += 1
+    return returnList
 
 def createWordList():
     """

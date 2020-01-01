@@ -6,7 +6,8 @@
         #index {text-align: center;}   
         #version {color:red;text-align: right;}
         #startGameButton {text-align: center;}
-        #addWordsButton {text-align: center; padding-top: 1%;}
+        #addWordsButton {text-align: center;}
+        #categorySelect {text-align: center;}
     </style>
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -18,24 +19,43 @@
 
     <body>
         <div class='row'>
-            <div class="col-sm-5"></div>
-            <div class="col-sm-2">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
                 <div id='index' text-align:'center' class="display-4"> <div class='text-primary'> 30 seconds! </div></div>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-4">
                 <div id='version' color:'red' text-align:'right'> {{ version|default:"420.69" }} </div>
             </div>
         </div>
         <br></br>
-        <div id='startGameButton'>
-            <form action="/game">
-                <input type="submit",  class="btn btn-primary", value="Start the game" />
-            </form>
-        </div>
-        <div id='addWordsButton'>
-            <form action="/addWords">
-                <input type="submit", class="btn btn-primary", value="Add words"/>
-            </form>
+        <form action="" method="post">
+            {{ form.non_field_errors }}
+            {% csrf_token %}
+            <div class='row'>
+                <div class='col-3'>
+                    <div class="fieldWrapper">
+                        {{ form.message.errors }}
+                        {{ form.team_one_name.label_tag }}
+                        {{ form.team_one_name }}
+                    </div>
+                </div>
+                <div class='col-3'>
+                    <div class="fieldWrapper">
+                        {{ form.sender.errors }}
+                        {{ form.team_two_name.label_tag }}
+                        {{ form.team_two_name }}
+                    </div>
+                </div>
+                <div class='col-3'>
+                    <div class="form-group">
+                        {{ form.cc_myself.errors }}
+                        {{ form.selected_categories.label_tag }}
+                        {{ form.selected_categories }}
+                    </div>
+                </div>
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+        </form>
         </div>
     </body>
 </html
