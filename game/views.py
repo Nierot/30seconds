@@ -6,7 +6,7 @@ from django.views.generic.edit import FormView
 from django.urls import reverse
 
 from .utils import createSpecificWordList
-from .randomname import randomGameName
+from .randomname import randomGameName, randomNameTeam1, randomNameTeam2
 from .game import *
 from .version import getVersion
 from .forms import WordForm, NewGameForm
@@ -43,8 +43,8 @@ def indexView(request):
     #version
     version = getVersion()
 
-    #select category
-
+    #form
+    prefillDict = {'team_one_name': randomNameTeam1(), 'team_two_name': randomNameTeam2()}
     if request.method =='POST':
         form = NewGameForm(request.POST)
         if form.is_valid():
@@ -64,7 +64,7 @@ def indexView(request):
             game.save()
             return redirect('beforeGameView', name=name)
     else:
-        form = NewGameForm()
+        form = NewGameForm(initial=prefillDict)
     return render(request, 'game/index.html', {'version': version, 'form': form})
 
 def beforeGameView(request, name):

@@ -3,11 +3,16 @@
     {% load static %}
 
     <style>
-        #index {text-align: center;}   
-        #version {color:red;text-align: right;}
-        #startGameButton {text-align: center;}
-        #addWordsButton {text-align: center;}
-        #categorySelect {text-align: center;}
+        #title {
+            z-index: 2;
+        }
+        #version {
+            color:red;
+            top: 1%;
+            right: 1%;
+            z-index: 1;
+            position: absolute;
+        } 
     </style>
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -15,45 +20,43 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <title> 30 seconds! </title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <head>
 
     <body>
-        <div class='row'>
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4">
-                <div id='index' text-align:'center' class="display-4"> <div class='text-primary'> 30 seconds! </div></div>
-            </div>
-            <div class="col-sm-4">
-                <div id='version' color:'red' text-align:'right'> {{ version|default:"420.69" }} </div>
-            </div>
+        <div class="jumbotron text-center" id='title'>
+            <h1>30 seconds</h1>
         </div>
-        <br></br>
+        <div id='version'>
+            <p>{{version}}</p>
+        </div>
+        <br>
         <form action="" method="post">
             {{ form.non_field_errors }}
             {% csrf_token %}
-            <div class='row'>
-                <div class='col-3'>
-                    <div class="fieldWrapper">
-                        {{ form.message.errors }}
-                        {{ form.team_one_name.label_tag }}
-                        {{ form.team_one_name }}
+            <div class='container'>
+                <div class='row'>
+                    <div class='col-sm-4'>
+                        <div class="fieldWrapper">
+                            Team 1: <br>
+                            {{ form.team_one_name }}
+                        </div>
+                        <div class="fieldWrapper">
+                            Team 2: <br>
+                            {{ form.team_two_name }}
+                        </div>
+                    </div>
+                    <div class='col-sm-4'>
+                        <div class="form-group">
+                            Categories: <br>
+                            {{ form.selected_categories }}
+                        </div>
+                    </div>
+                    <div class='col-sm-4' id="buttons">
+                        <input type="submit" value="Start game" class="btn btn-primary">
                     </div>
                 </div>
-                <div class='col-3'>
-                    <div class="fieldWrapper">
-                        {{ form.sender.errors }}
-                        {{ form.team_two_name.label_tag }}
-                        {{ form.team_two_name }}
-                    </div>
-                </div>
-                <div class='col-3'>
-                    <div class="form-group">
-                        {{ form.cc_myself.errors }}
-                        {{ form.selected_categories.label_tag }}
-                        {{ form.selected_categories }}
-                    </div>
-                </div>
-                <input type="submit" value="Submit" class="btn btn-primary">
             </div>
         </form>
         </div>
