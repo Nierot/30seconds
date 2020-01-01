@@ -8,6 +8,6 @@ class WordForm(forms.Form):
     selected_category = forms.ModelChoiceField(label='Category: ', queryset=cats, initial="Niels")
 
 class NewGameForm(forms.Form):
-    selected_categories = forms.ModelMultipleChoiceField(label='Category: ', queryset=Category.objects.all(), initial="Niels")
+    selected_categories = forms.ModelMultipleChoiceField(label='Categories', queryset=Category.objects.all(), initial="Niels")
     team_one_name = forms.CharField(label='Team 1', max_length=20)
     team_two_name = forms.CharField(label='Team 2', max_length=20)
