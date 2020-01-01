@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Word, Category
+from .models import Word, Category, Game
 
 class WordAdmin(admin.ModelAdmin):
     fields = ['category', 'word_text']
@@ -9,5 +9,9 @@ class WordAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     fields = ['name']
 
+class GameAdmin(admin.ModelAdmin):
+    fields= ['name', 'selected_categories', 'team_name_one', 'team_name_two']
+
 admin.site.register(Word, WordAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Game, GameAdmin)

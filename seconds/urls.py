@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from seconds.index import indexView
-from game.views import addWordsView
+#from game.views import indexView, addWordsView
+from game import views
+import game
 
 urlpatterns = [
     path('game/', include('game.urls')),
     path('admin/', admin.site.urls),
-    path('', indexView, name='indexView'),
-    path('addWords/', addWordsView, name='addWords'),
+    path('addWords/', game.views.addWordsView, name='addWordsView'),
+    path('', game.views.indexView, name='indexView'),
 ]

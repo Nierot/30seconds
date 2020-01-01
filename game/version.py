@@ -2,7 +2,7 @@
 Returns the current version number, has to be updated by hand
 """
 
-CURRENT_VERSION = "1.4.0"
+CURRENT_VERSION = "2.0.7"
 
 def getVersion():
     return CURRENT_VERSION
