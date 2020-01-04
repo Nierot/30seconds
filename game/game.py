@@ -1,4 +1,6 @@
 from .models import Game, Category, Word
+import datetime
+import pytz
 
 def getBasicCategory():
     """
@@ -24,3 +26,14 @@ def makeBasic():
     for word in wordlist:
         print(word)
         Word.addWord(word, cat)
+
+def deleteOldGames():
+    """
+    deletes games that are older than 1 week
+    """
+    now = pytz.utc.localize(datetime.datetime.now())
+    now = now.replace(tzinfo=pytz.utc)
+    for game in Game.objects.all():
+        if game.date_created < now-datetime.timedelta(hours=24):
+            print("Deleted game: " +  game.name)
+            game.delete()

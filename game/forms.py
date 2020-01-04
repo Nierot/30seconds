@@ -11,3 +11,6 @@ class NewGameForm(forms.Form):
     selected_categories = forms.ModelMultipleChoiceField(label='Categories', queryset=Category.objects.all())
     team_one_name = forms.CharField(label='Team 1', max_length=20)
     team_two_name = forms.CharField(label='Team 2', max_length=20)
+
+class WiskundeForm(forms.Form):
+    word_text = forms.CharField(label='Word', max_length=30)

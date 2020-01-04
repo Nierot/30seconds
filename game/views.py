@@ -5,15 +5,15 @@ from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 from django.urls import reverse
 
-from .utils import createSpecificWordList
+from .utils import createSpecificWordList, catsStringToArray, catsStringToStringArray
 from .randomname import randomGameName, randomNameTeam1, randomNameTeam2
 from .game import *
 from .version import getVersion
-from .forms import WordForm, NewGameForm
+from .forms import WordForm, NewGameForm, WiskundeForm
 from .models import Category, Word, Game
 
 def gameView(request):
-    return HttpResponseRedirect('/game/basic')
+    return HttpResponseRedirect('/')
 
 def gameSpecificView(request, name):
     version = getVersion()
@@ -42,6 +42,9 @@ def indexView(request):
     """
     #version
     version = getVersion()
+
+    #delete old games
+    deleteOldGames()
 
     #form
     prefillDict = {'team_one_name': randomNameTeam1(), 'team_two_name': randomNameTeam2()}
@@ -72,5 +75,17 @@ def beforeGameView(request, name):
     game = Game.objects.get(name=name)
     teamone = game.team_name_one
     teamtwo = game.team_name_two
-    context = {'version': version, 'teamone': teamone, 'teamtwo':teamtwo, 'name': name}
+    categories = catsStringToStringArray(getSelectedCategories(name))
+    context = {'version': version, 'teamone': teamone, 'teamtwo':teamtwo, 'name': name, 'categories': categories}
     return render(request, 'game/beforeGame.html', context)
+
+def wiskundeAddWords(request):
+    if request.method == 'POST':
+        form = WiskundeForm(request.POST)
+        if form.is_valid():
+            cat = Category.objects.get(id=16)
+            Word.addWord(form.cleaned_data['word_text'],cat)
+            return HttpResponseRedirect('/wiskunde/')
+    else:
+        form = WiskundeForm()
+    return render(request, 'game/wiskunde.html', {'form': form})

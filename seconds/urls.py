@@ -24,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('addWords/', game.views.addWordsView, name='addWordsView'),
     path('', game.views.indexView, name='indexView'),
+    path('wiskunde/', views.wiskundeAddWords, name='wiskunde'),
 ]

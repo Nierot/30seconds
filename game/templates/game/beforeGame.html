@@ -26,6 +26,11 @@
                     <li>Game id: {{ name }}</li>
                     <li>Team 1: {{ teamone }}</li>
                     <li>Team 2: {{ teamtwo }}</li>
+                    <li>Selected categories:
+                        {% for foo in categories %}
+                            <li class="list-group-item"> {{foo}} </li> 
+                        {% endfor %}
+                    </li>
                 </div>
                 <div class="col-sm-4">
                 </div>
@@ -33,27 +38,8 @@
                     <a href="/game/{{name}}" class="btn btn-primary" style="margin:10px 10px 10px 0px">Start game</a>
                     <a href="/" class="btn btn-danger">Back to menu</a>
                 </div>
-
-    <!--
-        <div class="container">
-            <div class='row'>
-                <div class='col-sm-4'>
-                    <div id='name'>
-                        {{ name }}
-                    </div>
-                <div class='col-sm-4'>
-                    <ul>
-                        <li>Team 1: {{ teamone }}</li>
-                        <li>Team 2: {{ teamtwo }}</li>
-                    </ul>
-                </div>
-                <div class='col-sm-2'>
-                    <div id='version'>
-                        {{ version }}
-                    </div>
-                </div>
-            </div>
-        </div>
-    -->
+                <!--
+                    TODO: add selected categories and something to change the settings
+                -->
     </body>
 </html>

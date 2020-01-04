@@ -31,6 +31,17 @@ def catsStringToArray(catsString):
     """
     return list(map(int, catsString.strip('[]').split(',')))
 
+def catsStringToStringArray(catsString):
+    """
+    converts '[1,2,3]' to ['joner1','joner2','Basic']
+    """
+    arr = catsStringToArray(catsString)
+    returnlist = []
+    for catid in arr:
+        returnlist.append(Category.objects.get(id=catid).name)
+    return returnlist
+
+
 def specificWordList(catsString):
     """
     creates the full wordlist from selected categories
