@@ -1,5 +1,6 @@
 from game.models import Word, Category
 import random
+import math
 
 def xAppeared(operator):
     """
@@ -18,6 +19,20 @@ def xAppeared(operator):
             if i.times_appeared > most:
                 most = i.times_appeared
         return most
+
+def func_randomint(exp_parameter=3, root_parameter=1):
+    """
+    Returns random integer based on exponential or inverse quadratic relation (or both)
+    such that proir less frequent words have higher probablity to appear
+
+    times_appeared toevoegen enzo
+    
+
+    """
+    sup = Word.objects.all().order_by("-id")[0].id - 1
+    randfloat = random.uniform(0,sup)
+    randint = math.floor(exp_parameter*(sup**(sup/randfloat)+1) + root_parameter(-1*math.sqrt(sup*randfloat)+sup)/2)
+    return randint
 
 def randomBoolean():
     """

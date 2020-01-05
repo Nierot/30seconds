@@ -25,7 +25,7 @@ SECRET_KEY = '!$k*a#*ku+8kz)dkl^4d%ah316xjgy69@sywc%rr-#bey#=)04'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.178.131', '127.0.0.1', 'nierot.pythonanywhere.com']
+ALLOWED_HOSTS = ['192.168.178.131', '127.0.0.1', 'nierot.pythonanywhere.com', 'nierot.herokuapp.com']
 
 
 # Application definition
